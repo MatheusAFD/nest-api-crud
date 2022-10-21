@@ -1,0 +1,10 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5435,
+  "username": "postgres",
+  "password": "docker",
+  "database": "nest_api",
+  "entities": ["dist/**/*.entity{.ts, .js}"],
+  "synchronize": true
+}
