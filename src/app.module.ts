@@ -1,21 +1,21 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5435,
-      username: 'postgres',
-      password: 'docker',
-      database: 'nest_api',
+      host: process.env.DB_HOST || 'database',
+      port: +process.env.DB_PORT || 5432,
+      username: process.env.USERNAME || 'postgres',
+      password: process.env.PASSWORD || 'docker',
+      database: process.env.DB_NAME || 'nest_api',
       autoLoadEntities: true,
       synchronize: true,
     }),
